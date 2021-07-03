@@ -1,6 +1,7 @@
 package com.Java8.newfeature.Java8.beans;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
@@ -36,6 +37,26 @@ public class Customer {
 	
 	@NotNull
 	private List<String> phoneNumbers;
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, id, name, phoneNumbers);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Customer other = (Customer) obj;
+		return Objects.equals(email, other.email) && Objects.equals(id, other.id) && Objects.equals(name, other.name)
+				&& Objects.equals(phoneNumbers, other.phoneNumbers);
+	}
+	
+	
 	
 	
 }

@@ -15,6 +15,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.Java8.newfeature.Java8.beans.Customer;
 import com.Java8.newfeature.Java8.beans.Employees;
@@ -72,6 +73,18 @@ public class StreamApis {
 	 * of return List<List<Object>>.
 	 */
 	public void testFlatMap() {
+		/*With flatmap you directly deal with the Object type. Regardless of the fact wheather it is 
+		 * List<List<Customer>> or List<List<String>>. You don't need to first get the internal list 
+		 * and loop through it to get the filterd object. 
+		 * Insted you directly use flatmap and get the Customer and filter it directly using filter. That's it!!!
+		 * 
+		 * Case 1: Customer {List<String> phoneNumbers }. You have to select distinct phone number.
+		 * In flatmap, you have to pass List which has to be converted to stream again at the end.
+		 * So if you have any Objec which has List as it's variable, you pass that variable and use stream() at the end
+		 * which will finally give you single value to operate on.
+		 * 
+		 * Case 2: You have List of List. Such as List<List<Customer>>. You have select customer with salary more than 70000.
+		 * */
 		List<Customer> custStrem = dbLayer.getCustStrema();
 
 		//without flatmap
@@ -83,6 +96,53 @@ public class StreamApis {
 		//Also called one to many mapping
 		List<String> phoneNumbers = custStrem.stream().flatMap(phoneNumber -> phoneNumber.getPhoneNumbers().stream()).collect(Collectors.toList());
 		System.out.println("\n\nFething list of phoneNumbers from List of Customer into separate list as List<phoneNumbers> :"+ phoneNumbers);
+		
+	}
+	
+	public void convertListOfListToSingleList() {
+		/*With flatmap you directly deal with the Object type. Regardless of the fact wheather it is 
+		 * List<List<Customer>> or List<List<String>>. You don't need to first get the internal list 
+		 * and loop through it to get the filterd object. 
+		 * Insted you directly use flatmap and get the Customer and filter it directly using filter. That's it!!!
+		 * 
+		 * Case 1: Customer {List<String> phoneNumbers }. You have to select distinct phone number.
+		 * In flatmap, you have to pass List which has to be converted to stream again at the end.
+		 * So if you have any Objec which has List as it's variable, you pass that variable and use stream() at the end
+		 * which will finally give you single value to operate on.
+		 * 
+		 * Case 2: You have List of List. Such as List<List<Customer>>. You have select customer with salary more than 70000.
+		 * */
+		List<List<String>> strListOfList = new ArrayList<>();;
+		List<String> strList = new ArrayList<>();
+		strList.add("Apple");
+		strList.add("Banana");
+		strListOfList.add(strList);
+		
+		List<String> strList2 = new ArrayList<>();
+		strList2.add("Apple2");
+		strList2.add("Banana2");
+		strListOfList.add(strList2);
+		
+		Stream<String> flatMap = strListOfList.stream().flatMap(List::stream);
+		flatMap.map(str -> str.equals("Apple2")).findFirst();
+		
+		List<List<Employees>> empListOfList = new ArrayList<>();;
+		List<Employees> empList = new ArrayList<>();
+		empList.add(new Employees(0, null, null, 0));
+		empList.add(new Employees(0, null, null, 0));
+		empListOfList.add(empList);
+		
+		List<Employees> empList2 = new ArrayList<>();
+		empList2.add(new Employees(0, null, null, 0));
+		empList2.add(new Employees(0, null, null, 0));
+		empListOfList.add(empList2);
+		
+		Stream<Employees> flatMap2 = empListOfList.stream().flatMap(List::stream);
+		List<Employees> collect = flatMap2.filter(emp -> emp.getName().equals("Aman")).collect(Collectors.toList());
+		
+		
+		
+		
 		
 	}
 	/**

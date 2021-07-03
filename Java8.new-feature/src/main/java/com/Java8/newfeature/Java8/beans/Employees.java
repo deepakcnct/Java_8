@@ -7,9 +7,14 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor
-public class Employees {
+public class Employees implements Comparable<Employees>{
 	private long id;
 	private String name;
 	private String grade;
 	private long salary;
+	@Override
+	public int compareTo(Employees o) {
+		// TODO Auto-generated method stub
+		return (int) (this.getId() - o.id);
+	}
 }
