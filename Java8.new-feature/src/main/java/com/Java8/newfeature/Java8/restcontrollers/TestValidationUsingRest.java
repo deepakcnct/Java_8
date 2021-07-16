@@ -25,6 +25,15 @@ public class TestValidationUsingRest {
 	
 	@GetMapping("/get")
 	String getTest() {
+		boolean b = true;
+		if(b)
+			return "Transaction failed!!!";
+		return "hello world";
+	}
+	
+	@GetMapping("/get2")
+	String getTest2() {
+		
 		return "hello world";
 	}
 }

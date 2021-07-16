@@ -15,6 +15,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import com.Java8.newfeature.Java8.beans.Customer;
@@ -144,6 +145,17 @@ public class StreamApis {
 		
 		
 		
+	}
+	
+	
+	
+	public void testMapToObj() {
+		
+		IntStream.rangeClosed(1, 50)
+//		.peek(null)
+		.peek(i -> System.out.println("Processing count : " + i))
+		.mapToObj(i -> new Customer(i, "", null,null )) //It will map int to Customer Object
+		.collect(Collectors.toList());
 	}
 	/**
 	 * Map is used for transforming the data. That is from one form to another. Such as Stream<Object> to Stream<int>.
