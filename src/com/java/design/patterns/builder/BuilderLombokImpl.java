@@ -22,13 +22,11 @@ public class BuilderLombokImpl {
 		return new BuilderExampleBuilder();
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "BuilderLombokImpl [created=" + created + ", name=" + name + ", age=" + age + ", occupations="
 				+ occupations + "]";
 	}
-
 
 	public static class BuilderExampleBuilder {
 		private long created;
@@ -95,7 +93,10 @@ public class BuilderLombokImpl {
 		//This is Lombok setter without set to look more fancier or may be to follow builder naming convention.
 //		BuilderLombokImpl build = BuilderLombokImpl.builder().name("Hello").age(30).build();
 		//This is normal setter
-		BuilderLombokImpl build = BuilderLombokImpl.builder().setName("Hello").setAge(30).build();
+		BuilderLombokImpl build = BuilderLombokImpl.builder()
+													.setName("Hello")
+													.setAge(30)
+													.build();
 
 		System.out.println(build);
 	}
