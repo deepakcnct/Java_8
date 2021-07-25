@@ -6,7 +6,7 @@ package com.Java8.newfeature.Java78.Multithreading;
 	yield - causes the currently executing thread object to temporarily pause and allow other threads to execute.
 
  * */
-public class MultithreadingBasics {
+public class MultithreadingBasicsMethods {
 	public static void main(String args[]) {
 //		testThreads();
 //		testRunnable();

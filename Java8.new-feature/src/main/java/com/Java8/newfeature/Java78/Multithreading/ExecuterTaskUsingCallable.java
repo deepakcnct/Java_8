@@ -8,11 +8,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-class Task implements Callable<String> 
+class ExecuterTaskUsingCallable implements Callable<String> 
 {
     private final String name;
  
-    public Task(String name) {
+    public ExecuterTaskUsingCallable(String name) {
         this.name = name;
     }
  
@@ -37,9 +37,9 @@ class Task implements Callable<String>
     public static void main(String[] args) {
     	ExecutorService executor = (ExecutorService) Executors.newFixedThreadPool(2);
     	 
-        List<Task> taskList = new ArrayList<>();
+        List<ExecuterTaskUsingCallable> taskList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            Task task = new Task("Task-" + i);
+            ExecuterTaskUsingCallable task = new ExecuterTaskUsingCallable("Task-" + i);
             taskList.add(task);
         }
          
@@ -62,9 +62,20 @@ class Task implements Callable<String>
  
         System.out.println("\n========Printing the results======");
          
-        for (int i = 0; i < resultList.size(); i++) {
-            Future<String> future = resultList.get(i);
-            try {
+//        for (int i = 0; i < resultList.size(); i++) {
+//            Future<String> future = resultList.get(i);
+//            try {
+//                String result = future.get();
+////                System.out.println(result.getName() + ": " + result.getTimestamp());
+//                System.out.println("Result Is :"+result);
+//            } catch (InterruptedException | ExecutionException e) {
+//                e.printStackTrace();
+//            }
+//        }
+        
+        //Using For each
+        for (Future<String> future : resultList) {
+        	try {
                 String result = future.get();
 //                System.out.println(result.getName() + ": " + result.getTimestamp());
                 System.out.println("Result Is :"+result);
