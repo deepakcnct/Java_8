@@ -83,3 +83,23 @@ class ExecuterTaskUsingCallable implements Callable<String> {
 	}
 
 }
+
+/* Output: */
+//Task-0: Staring
+//Task-1: Staring
+//Task-0: Waiting 7 seconds for results.
+//Task-1: Waiting 2 seconds for results.
+//Task-3: Staring
+//Task-3: Waiting 7 seconds for results.
+//Task-4: Staring
+//Task-4: Waiting 4 seconds for results.
+//Task-2: Staring
+//Task-2: Waiting 6 seconds for results.
+//
+//========Printing the results======
+//Result Is :SUCCESS
+//Result Is :SUCCESS
+//Result Is :SUCCESS
+//Result Is :SUCCESS
+//Result Is :SUCCESS
+/* Output end*/
