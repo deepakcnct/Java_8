@@ -156,6 +156,12 @@ public class StreamApis {
 		.peek(i -> System.out.println("Processing count : " + i))
 		.mapToObj(i -> new Customer(i, "", null,null )) //It will map int to Customer Object
 		.collect(Collectors.toList());
+		
+//		IntStream.rangeClosed(1, 50)
+////		.peek(null)
+//		.peek(i -> System.out.println("Processing count : " + i)).mapToLong( i -> i);
+//		.mapToObj(i -> new Customer(i, "", null,null )) //It will map int to Customer Object
+//		.collect(Collectors.toList());
 	}
 	/**
 	 * Map is used for transforming the data. That is from one form to another. Such as Stream<Object> to Stream<int>.
